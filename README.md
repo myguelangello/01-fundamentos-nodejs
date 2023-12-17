@@ -6,7 +6,7 @@ Bem-vindo ao README do servidor web Node.js que desenvolvi durante meus estudos 
 
 ### 1. Iniciando no Node.js
 
-O projeto começa com os princípios básicos do Node.js, onde a configuro o ambiente de desenvolvimento e inicio o projeto. Este conhecimento é essencial para estabelecer uma base sólida.
+O projeto começa com os princípios básicos do Node.js, onde configuro o ambiente de desenvolvimento e inicio o projeto. Este conhecimento é essencial para estabelecer uma base sólida.
 
 ### 2. Estrutura de Aplicação
 
@@ -18,7 +18,7 @@ O entendimento profundo do conceito de streams no Node.js é crucial para lidar 
 
 ### 4. Expressões Regulares (RegEx)
 
-O uso de expressões regulares é incorporado para manipulação avançada de strings e validação de entrada. Essa técnica é fundamental para garantir a segurança e a integridade dos dados manipulados nos rotas do servidor.
+O uso de expressões regulares é incorporado para manipulação avançada de strings e validação de entrada. Essa técnica é fundamental para garantir a segurança e a integridade dos dados manipulados nas rotas do servidor.
 
 ### 5. Rotas HTTP
 
@@ -27,30 +27,126 @@ A manipulação de rotas HTTP foi implementada de maneira simples e eficaz. Cada
 ## Como Executar o Servidor
 
 1. Clone o repositório para sua máquina local.
+
    ```bash
-   git clone https://github.com/seu-usuario/servidor-node-puro.git
+   git clone https://github.com/myguelangello/01-fundamentos-nodejs.git
    ```
 
 2. Navegue até o diretório do projeto.
+
    ```bash
-   cd servidor-node-puro
+   cd 01-fundamentos-nodejs
    ```
 
-3. Instale as dependências.
+3. Inicie o servidor.
+
    ```bash
-   npm install
+   npm run dev
    ```
 
-4. Inicie o servidor.
-   ```bash
-   node server.js
-   ```
+O servidor estará rodando em http://localhost:3333.
 
-O servidor estará rodando em http://localhost:3000.
+# Exemplos de Rotas HTTP
 
-## Contribuições
+#### As rotas podem ser testadas usando o HTTPie ou o cURL, assim como o Insomnia ou Postman.
 
-Contribuições são bem-vindas! Sinta-se à vontade para abrir problemas (issues) e enviar pull requests para melhorar este servidor web Node.js puro.
+## Rota GET
+
+### 1. Listar todos os Usuários
+
+- **Rota:** `/users`
+- **Método:** GET
+
+#### Exemplo de Requisição
+
+```bash
+http http://localhost:3333/users
+```
+
+### 2. Pesquisar Usuário por ID
+
+- **Rota:** `/users/:id`
+- **Método:** GET
+
+#### Parâmetros
+
+- `:id` (obrigatório): Identificador único do usuário.
+
+#### Exemplo de Requisição
+
+```bash
+http http://localhost:3333/users/123
+```
+
+Neste exemplo, a rota GET `/users/:id` é acionada com o `:id` igual a 123, buscando informações do usuário com esse identificador.
+
+### 3. Pesquisar Usuários por Query
+
+- **Rota:** `/users`
+- **Método:** GET
+
+#### Query Params
+
+- `search` (opcional): Parâmetro para realizar uma busca específica.
+
+#### Exemplo de Requisição
+
+```bash
+http http://localhost:3333/users?search=name
+```
+
+Neste exemplo, a rota GET `/users` é acionada com o query params `search` definido como "name" buscando usuários com base nos critérios fornecidos.
+
+
+## Rota POST para Criar Novo Usuário
+
+```bash
+http POST http://localhost:3333/users name="Novo Usuário" email="novo_usuario@email.com"
+```
+
+Neste exemplo, a rota POST `/users` é acionada usando `httpie`, com os parâmetros `name` e `email` fornecidos no corpo da requisição. O servidor processará a requisição e criará um novo usuário com base nos dados fornecidos. Certifique-se de ter o `httpie` instalado em sua máquina para executar este comando.
+
+
+
+## Rota PUT para Atualizar Usuário
+
+- **Rota:** `/users/:id`
+- **Método:** PUT
+
+#### Parâmetros
+
+- `:id` (obrigatório): Identificador único do usuário a ser atualizado.
+
+#### Corpo da Requisição
+
+O corpo da requisição deve conter os dados a serem atualizados para o usuário identificado por `:id`.
+
+#### Exemplo de Requisição
+
+```bash
+http PUT http://localhost:3333/users/123 name="Novo Nome" email="novo@email.com"
+```
+
+Neste exemplo, a rota PUT `/users/:id` é acionada com o `:id` igual a 123, e o corpo da requisição contém os novos dados a serem atribuídos ao usuário.
+
+
+
+## Rota DELETE para Remover Usuário
+
+- **Rota:** `/users/:id`
+- **Método:** DELETE
+
+#### Parâmetros
+
+- `:id` (obrigatório): Identificador único do usuário a ser removido.
+
+#### Exemplo de Requisição
+
+```bash
+http DELETE http://localhost:3333/users/123
+```
+
+Neste exemplo, a rota DELETE `/users/:id` é acionada com o `:id` igual a 123, removendo o usuário correspondente.
 
 ## Licença
 
